@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed — Executive Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent:       #C4973A;
+    --accent-bright:#E2B55A;
+    --accent-light: #F0D49A;
+    --accent-pale:  #FAF3E0;
+    --accent-glow:  rgba(196,151,58,0.18);
+
+    --bg:           #0D0F14;
+    --bg-2:         #12151C;
+    --bg-3:         #181C26;
+    --bg-card:      #1A1E2B;
+    --border:       rgba(255,255,255,0.07);
+    --border-accent:rgba(196,151,58,0.28);
+
+    --text:         #F0EDE8;
+    --text-2:       #B8B3AA;
+    --text-3:       #7A7570;
+    --white:        #FFFFFF;
+
+    --radius:       4px;
+    --shadow:       0 8px 48px rgba(0,0,0,0.5);
+    --shadow-card:  0 2px 24px rgba(0,0,0,0.35);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ══ NAV ══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* logo LEFT, links RIGHT */
+    padding: 0 56px;
+    height: 66px;
+    background: rgba(13,15,20,0.82);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* logo — always on the left */
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  /* links — always on the right */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color 0.22s;
+  }
+  .nav-links a:hover { color: var(--accent-bright); }
+  .nav-links .nav-cta {
+    padding: 8px 20px;
+    background: var(--accent);
+    color: var(--bg) !important;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius);
+    transition: background 0.22s, transform 0.18s !important;
+  }
+  .nav-links .nav-cta:hover {
+    background: var(--accent-bright);
+    transform: translateY(-1px);
+    color: var(--bg) !important;
+  }
+
+  /* hamburger (mobile) */
+  .nav-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-menu-btn span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text-2);
+    transition: all 0.25s;
+  }
+
+  /* ══ HERO ══ */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 66px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle grid background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-right {
+    background: var(--bg-2);
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-monogram {
+    position: relative;
+    width: 210px; height: 210px;
+    border: 1px solid var(--border-accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    background: var(--bg-card);
+    box-shadow: 0 0 60px var(--accent-glow);
+  }
+  .hero-monogram::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(196,151,58,0.14);
+  }
+  .hero-monogram-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 92px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .hero-monogram-label {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-top: 8px;
+  }
+
+  .hero-tag {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero-tag-line { width: 32px; height: 1px; background: var(--accent); }
+  .hero-tag span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 4.5vw, 70px);
+    font-weight: 700;
+    line-height: 1.06;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.8vw, 22px);
+    font-weight: 400;
+    color: var(--text-3);
+    letter-spacing: 0.09em;
+    margin-bottom: 28px;
+  }
+  .hero-divider {
+    width: 48px; height: 1px;
+    background: var(--accent);
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.88;
+    max-width: 460px;
+    margin-bottom: 44px;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ══ BUTTONS ══ */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 30px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: all 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(196,151,58,0.3);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--accent);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* ══ SECTIONS ══ */
+  section { padding: 96px 64px; }
+
+  .section-tag {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .section-tag span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 3vw, 48px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .section-header { margin-bottom: 56px; }
+
+  /* ══ ABOUT ══ */
+  .about {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 44px;
+  }
+  .stat-box {
+    padding: 24px 20px;
+    background: var(--bg-card);
+    transition: background 0.25s;
+  }
+  .stat-box:hover { background: var(--bg-3); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .about-right p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.92;
+    margin-bottom: 18px;
+  }
+  .about-right p strong { color: var(--accent-light); font-weight: 500; }
+
+  /* ══ SERVICES ══ */
+  .services { background: var(--bg); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--bg-card);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    transition: width 0.4s ease;
+  }
+  .service-card:hover { background: var(--bg-3); }
+  .service-card:hover::after { width: 100%; }
+
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    display: block;
+  }
+  .service-icon {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border-accent);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: var(--accent);
+    font-size: 15px;
+    border-radius: 2px;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.78;
+  }
+
+  /* ══ DOMAINS ══ */
+  .domains {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .domains-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .domain-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    border-radius: var(--radius);
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .domain-tag::before {
+    content: '◆';
+    font-size: 5px;
+    color: var(--accent);
+  }
+  .domain-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+    background: var(--accent-glow);
+    transform: translateY(-2px);
+  }
+
+  /* ══ PHILOSOPHY ══ */
+  .philosophy { background: var(--bg); }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .philosophy-left { position: sticky; top: 100px; }
+  .philosophy-left p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.88;
+    margin-top: 18px;
+  }
+  .phil-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 20px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: padding-left 0.3s;
+  }
+  .phil-step:first-child { border-top: 1px solid var(--border); }
+  .phil-step:hover { padding-left: 8px; }
+  .phil-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--border-accent);
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .phil-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .phil-content p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.78;
+  }
+
+  /* ══ CTA ══ */
+  .cta-section {
+    position: relative;
+    background: var(--bg-2);
+    border-top: 1px solid var(--border-accent);
+    border-bottom: 1px solid var(--border-accent);
+    text-align: center;
+    padding: 110px 64px;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(196,151,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-ornament {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--border-accent);
+    letter-spacing: 0.22em;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 54px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-section h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .cta-section p {
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 420px;
+    margin: 0 auto 44px;
+    line-height: 1.88;
+    position: relative;
+  }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ══ FOOTER ══ */
+  footer {
+    padding: 36px 64px;
+    background: var(--bg-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .footer-text {
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+  }
+  .footer-line {
+    width: 1px; height: 24px;
+    background: var(--border);
+  }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: fadeUp 0.72s ease forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.22s; }
+  .d3 { animation-delay: 0.36s; }
+  .d4 { animation-delay: 0.52s; }
+
+  /* ══ INTAKE FORM ══ */
+  .intake-section {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    padding: 96px 64px;
+  }
+  .intake-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .intake-left { position: sticky; top: 100px; }
+  .intake-sub {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.88;
+    margin-top: 16px;
+    margin-bottom: 36px;
+  }
+  .intake-steps { display: flex; flex-direction: column; gap: 0; }
+  .intake-step {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.25s;
+  }
+  .intake-step:hover { padding-left: 6px; }
+  .intake-step:first-child { border-top: 1px solid var(--border); }
+  .intake-step span {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--border-accent);
+    min-width: 28px;
+    line-height: 1;
+  }
+  .intake-step p {
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  /* form */
+  .intake-right {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 40px;
+    border-radius: var(--radius);
+  }
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+  .step-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .field-group { margin-bottom: 20px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+  .req { color: var(--accent); }
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    border-radius: var(--radius);
+    transition: border-color 0.2s, background 0.2s;
+    resize: vertical;
+    appearance: none;
+  }
+  .field-group input:focus,
+  .field-group select:focus,
+  .field-group textarea:focus {
+    border-color: var(--accent);
+    background: var(--bg-2);
+  }
+  .field-group input::placeholder,
+  .field-group textarea::placeholder { color: var(--text-3); }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .check-item, .radio-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px;
+    color: var(--text-2);
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-3);
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+  .check-item:hover, .radio-item:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--accent-light);
+  }
+  .check-item input, .radio-item input { accent-color: var(--accent); }
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-next, .btn-submit {
+    padding: 11px 26px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.25s;
+  }
+  .btn-next:hover, .btn-submit:hover {
+    background: var(--accent-bright);
+    transform: translateY(-1px);
+  }
+  .btn-back {
+    padding: 11px 26px;
+    background: transparent;
+    color: var(--text-3);
+    border: 1px solid var(--border);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.25s;
+  }
+  .btn-back:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* progress bar */
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 28px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    transition: width 0.4s ease;
+  }
+
+  /* success */
+  .success-box { text-align: center; padding: 40px 20px; }
+  .success-icon { font-size: 36px; color: var(--accent); margin-bottom: 16px; }
+  .success-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .success-box p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.8;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .success-summary {
+    margin-top: 24px;
+    text-align: left;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.9;
+    border-radius: var(--radius);
+  }
+  .success-summary strong { color: var(--accent-light); font-weight: 500; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-menu-btn { display: flex; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 72px 24px 48px; }
+    .hero-right { display: none; }
+
+    section, .cta-section { padding: 64px 24px; }
+    .about-grid, .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .intake-wrap { grid-template-columns: 1fr; gap: 36px; }
+    .intake-left { position: static; }
+    .intake-right { padding: 24px; }
+    .field-row { grid-template-columns: 1fr; }
+    .checkbox-grid { grid-template-columns: 1fr; }
+    .philosophy-left { position: static; }
+    footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    .footer-line { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Hesham<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#domains">Expertise</a></li>
+    <li><a href="#philosophy">Approach</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#intake" class="nav-cta">Start Now</a></li>
+  </ul>
+  <div class="nav-menu-btn" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag fade-up">
+      <div class="hero-tag-line"></div>
+      <span>Executive Brand Design</span>
+    </div>
+    <h1 class="fade-up d1">
+      Your Identity,<br><em>Elevated.</em>
+    </h1>
+    <p class="hero-name fade-up d2">Hesham — Executive Portfolio</p>
+    <div class="hero-divider fade-up d2"></div>
+    <p class="hero-sub fade-up d3">
+      A premium Executive Portfolio is not just a document — it is a curated brand experience that commands attention, communicates authority, and opens doors at the highest level.
+    </p>
+    <div class="hero-cta fade-up d4">
+      <a href="#contact" class="btn-primary">Begin the Journey →</a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram fade-up d2">
+      <div class="hero-monogram-letter">A</div>
+      <div class="hero-monogram-label">Executive Brand</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-header">
+        <div class="section-tag"><span>The Vision</span></div>
+        <h2 class="section-title">More Than a Portfolio.<br>A Brand Statement.</h2>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Domains Covered</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Print & Digital Ready</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Revisions Included</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">01</div>
+          <div class="stat-label">Unique Identity</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <p>
+        This is not a traditional portfolio. This is an <strong>Executive Brand</strong> — a comprehensive, meticulously crafted representation of Hesham's leadership identity, professional journey, and impact across industries.
+      </p>
+      <p>
+        Every element is intentional. Every layout decision serves a purpose. The result is a presentation that doesn't just list achievements — it <strong>tells a story</strong> that resonates with decision-makers, partners, and institutions at the highest level.
+      </p>
+      <p>
+        Designed with the same attention to detail as the world's most respected executive brands, Hesham's portfolio will stand as a testament to vision, authority, and lasting impact.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div class="section-tag"><span>What You Receive</span></div>
+    <h2 class="section-title">A Complete Executive<br>Brand System</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01 —</span>
+      <div class="service-icon">✦</div>
+      <h3 class="service-title">Luxury Visual Identity</h3>
+      <p class="service-desc">A cohesive design system — color palette, typography, layout language — that reflects executive presence with precision and elegance.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02 —</span>
+      <div class="service-icon">◈</div>
+      <h3 class="service-title">Professional Storytelling</h3>
+      <p class="service-desc">Career narrative, achievements, and milestones crafted with editorial precision to communicate leadership, impact, and vision.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03 —</span>
+      <div class="service-icon">◉</div>
+      <h3 class="service-title">Smart Infographics</h3>
+      <p class="service-desc">Data and achievements transformed into visually compelling graphics that communicate instantly and leave a lasting impression.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04 —</span>
+      <div class="service-icon">⬡</div>
+      <h3 class="service-title">Dual-Format PDF</h3>
+      <p class="service-desc">A single design system delivered in both print-ready and digital formats — optimized for every context and audience.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05 —</span>
+      <div class="service-icon">⟐</div>
+      <h3 class="service-title">Website Portfolio Foundation</h3>
+      <p class="service-desc">The visual identity and content architecture designed to scale seamlessly into a full professional website when ready.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06 —</span>
+      <div class="service-icon">◎</div>
+      <h3 class="service-title">Unlimited Revisions</h3>
+      <p class="service-desc">The work continues until fully satisfied. No compromises, no shortcuts — only the result that reflects true caliber.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section class="domains" id="domains">
+  <div class="section-header">
+    <div class="section-tag"><span>Expertise Domains</span></div>
+    <h2 class="section-title">Every Area of Hesham's<br>Leadership — Highlighted</h2>
+  </div>
+  <div class="domains-wrap">
+    <span class="domain-tag">Entrepreneurship</span>
+    <span class="domain-tag">Training & Coaching</span>
+    <span class="domain-tag">Events Management</span>
+    <span class="domain-tag">Youth Initiatives</span>
+    <span class="domain-tag">Partnership Building</span>
+    <span class="domain-tag">Hackathon Oversight</span>
+    <span class="domain-tag">Public Speaking</span>
+    <span class="domain-tag">Session Facilitation</span>
+    <span class="domain-tag">Project Supervision</span>
+    <span class="domain-tag">Community Leadership</span>
+    <span class="domain-tag">Strategic Networking</span>
+    <span class="domain-tag">Forum Management</span>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-grid">
+    <div class="philosophy-left">
+      <div class="section-tag"><span>Design Approach</span></div>
+      <h2 class="section-title">Built on Three Principles</h2>
+      <p>Every design decision is guided by one question: does this reflect the true caliber of Hesham's leadership?</p>
+    </div>
+    <div>
+      <div class="phil-step">
+        <div class="phil-num">01</div>
+        <div class="phil-content">
+          <h3>Premium Visual Identity</h3>
+          <p>A cohesive system where every element — from the choice of typeface to the weight of a dividing line — is intentional. The result feels authoritative, refined, and unmistakably personal.</p>
+        </div>
+      </div>
+      <div class="phil-step">
+        <div class="phil-num">02</div>
+        <div class="phil-content">
+          <h3>Clean Layout Architecture</h3>
+          <p>Generous whitespace, clear visual hierarchy, and a reading flow that guides the eye naturally. The layout does the heavy lifting so the content can breathe and resonate.</p>
+        </div>
+      </div>
+      <div class="phil-step">
+        <div class="phil-num">03</div>
+        <div class="phil-content">
+          <h3>Executive Presentation Standard</h3>
+          <p>Designed to the standard of the world's leading executive brands — modern, elegant, and easy to navigate. Every page reflects global-caliber leadership.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" id="contact">
+  <div class="cta-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+  <h2>Ready to Build<br>Something <em>Extraordinary?</em></h2>
+  <p>Fill in the form below and Hesham will get back to you to begin your creative brief.</p>
+  <div class="cta-btns">
+    <a href="#intake" class="btn-primary">Fill the Form ↓</a>
+    <a href="#services" class="btn-secondary">Review Services</a>
+  </div>
+</section>
+
+<!-- INTAKE FORM -->
+<section class="intake-section" id="intake">
+  <div class="intake-wrap">
+    <div class="intake-left">
+      <div class="section-tag"><span>Client Brief</span></div>
+      <h2 class="section-title">Let's Build Your<br><em>Executive Portfolio</em></h2>
+      <p class="intake-sub">Fill in the details below as clearly as possible. The more you share, the better the result.</p>
+      <div class="intake-steps">
+        <div class="intake-step"><span>01</span><p>Personal & Contact Info</p></div>
+        <div class="intake-step"><span>02</span><p>Professional Background</p></div>
+        <div class="intake-step"><span>03</span><p>Achievements & Domains</p></div>
+        <div class="intake-step"><span>04</span><p>Design Preferences</p></div>
+      </div>
+    </div>
+    <div class="intake-right">
+      <div id="form-view">
+        <!-- STEP 1 -->
+        <div class="form-step active" data-step="1">
+          <div class="step-badge">Step 1 of 4 — Personal Info</div>
+          <div class="field-group">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="e.g. Hesham Al-Rashid">
+          </div>
+          <div class="field-group">
+            <label>Job Title / Professional Title <span class="req">*</span></label>
+            <input type="text" id="f-title" placeholder="e.g. Entrepreneur & Executive Coach">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" id="f-email" placeholder="your@email.com">
+            </div>
+            <div class="field-group">
+              <label>Phone / WhatsApp</label>
+              <input type="text" id="f-phone" placeholder="+966 5xx xxx xxxx">
+            </div>
+          </div>
+          <div class="field-group">
+            <label>City & Country</label>
+            <input type="text" id="f-location" placeholder="e.g. Riyadh, Saudi Arabia">
+          </div>
+          <div class="step-nav">
+            <span></span>
+            <button class="btn-next" onclick="nextStep(1)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" data-step="2">
+          <div class="step-badge">Step 2 of 4 — Professional Background</div>
+          <div class="field-group">
+            <label>Years of Experience <span class="req">*</span></label>
+            <select id="f-years">
+              <option value="">Select...</option>
+              <option>1 – 3 years</option>
+              <option>3 – 5 years</option>
+              <option>5 – 10 years</option>
+              <option>10 – 15 years</option>
+              <option>15+ years</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Current or Most Recent Role <span class="req">*</span></label>
+            <input type="text" id="f-role" placeholder="e.g. CEO at XYZ Company">
+          </div>
+          <div class="field-group">
+            <label>Previous Roles / Career Timeline</label>
+            <textarea id="f-career" rows="4" placeholder="List your key positions and organizations, starting from the most recent..."></textarea>
+          </div>
+          <div class="field-group">
+            <label>Education & Certifications</label>
+            <textarea id="f-edu" rows="3" placeholder="Degrees, certificates, training programs..."></textarea>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back" onclick="prevStep(2)">← Back</button>
+            <button class="btn-next" onclick="nextStep(2)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" data-step="3">
+          <div class="step-badge">Step 3 of 4 — Achievements & Domains</div>
+          <div class="field-group">
+            <label>Top 5 Achievements <span class="req">*</span></label>
+            <textarea id="f-achieve" rows="5" placeholder="e.g. Launched a startup that reached 10,000 users in 6 months&#10;Organized a national youth forum with 500+ attendees&#10;..."></textarea>
+          </div>
+          <div class="field-group">
+            <label>Domains of Expertise — select all that apply</label>
+            <div class="checkbox-grid">
+              <label class="check-item"><input type="checkbox" value="Entrepreneurship"> Entrepreneurship</label>
+              <label class="check-item"><input type="checkbox" value="Training & Coaching"> Training & Coaching</label>
+              <label class="check-item"><input type="checkbox" value="Events Management"> Events Management</label>
+              <label class="check-item"><input type="checkbox" value="Youth Initiatives"> Youth Initiatives</label>
+              <label class="check-item"><input type="checkbox" value="Partnership Building"> Partnership Building</label>
+              <label class="check-item"><input type="checkbox" value="Hackathon Oversight"> Hackathon Oversight</label>
+              <label class="check-item"><input type="checkbox" value="Public Speaking"> Public Speaking</label>
+              <label class="check-item"><input type="checkbox" value="Project Supervision"> Project Supervision</label>
+              <label class="check-item"><input type="checkbox" value="Community Leadership"> Community Leadership</label>
+              <label class="check-item"><input type="checkbox" value="Strategic Networking"> Strategic Networking</label>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Notable Projects or Events You Led</label>
+            <textarea id="f-projects" rows="3" placeholder="Names of projects, hackathons, forums, initiatives..."></textarea>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back" onclick="prevStep(3)">← Back</button>
+            <button class="btn-next" onclick="nextStep(3)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="form-step" data-step="4">
+          <div class="step-badge">Step 4 of 4 — Design Preferences</div>
+          <div class="field-group">
+            <label>Portfolio Language</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="lang" value="English"> English</label>
+              <label class="radio-item"><input type="radio" name="lang" value="Arabic"> Arabic</label>
+              <label class="radio-item"><input type="radio" name="lang" value="Both"> Both</label>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Color Preference</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="color" value="Gold & Cream (Light)"> Gold & Cream (Light)</label>
+              <label class="radio-item"><input type="radio" name="color" value="Gold & Dark (Dark)"> Gold & Dark (Dark)</label>
+              <label class="radio-item"><input type="radio" name="color" value="Navy & White"> Navy & White</label>
+              <label class="radio-item"><input type="radio" name="color" value="Open to suggestion"> Open to suggestion</label>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Format Needed</label>
+            <div class="checkbox-grid" style="grid-template-columns:1fr 1fr;">
+              <label class="check-item"><input type="checkbox" value="PDF"> PDF Document</label>
+              <label class="check-item"><input type="checkbox" value="Website"> Website Portfolio</label>
+              <label class="check-item"><input type="checkbox" value="Both"> Both PDF + Website</label>
+              <label class="check-item"><input type="checkbox" value="Unsure"> Not sure yet</label>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Deadline / Timeline</label>
+            <input type="text" id="f-deadline" placeholder="e.g. Within 2 weeks, urgent, flexible...">
+          </div>
+          <div class="field-group">
+            <label>Anything else you'd like to add?</label>
+            <textarea id="f-notes" rows="3" placeholder="References, inspiration, special requests..."></textarea>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back" onclick="prevStep(4)">← Back</button>
+            <button class="btn-submit" onclick="submitForm()">Submit Brief ✦</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="success-view" style="display:none;">
+        <div class="success-box">
+          <div class="success-icon">✦</div>
+          <h3>Brief Received.</h3>
+          <p>Thank you for sharing your details. Hesham will review your brief and get in touch within <strong>24 hours</strong> to begin your executive portfolio.</p>
+          <div class="success-summary" id="success-summary"></div>
+          <button class="btn-primary" style="margin-top:24px;" onclick="resetForm()">Submit Another Brief</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hesham.</div>
+  <div class="footer-line"></div>
+  <div class="footer-text">Premium Executive Brand · Minimal & Modern · World-Class Standard</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.service-card, .stat-box, .phil-step, .domain-tag').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s`;
+    obs.observe(el);
+  });
+
+  // ── INTAKE FORM LOGIC ──
+  function injectProgressBar() {
+    document.querySelectorAll('.form-step').forEach(step => {
+      const n = parseInt(step.dataset.step);
+      const bar = document.createElement('div');
+      bar.className = 'progress-bar';
+      bar.innerHTML = `<div class="progress-fill" style="width:${n * 25}%"></div>`;
+      step.insertBefore(bar, step.firstChild);
+    });
+  }
+  injectProgressBar();
+
+  function showStep(n) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.form-step[data-step="${n}"]`).classList.add('active');
+    document.getElementById('intake').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function nextStep(current) {
+    if (current === 1) {
+      const name = document.getElementById('f-name').value.trim();
+      const title = document.getElementById('f-title').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      if (!name || !title || !email) { alert('Please fill in the required fields (Name, Title, Email).'); return; }
+    }
+    if (current === 2) {
+      const years = document.getElementById('f-years').value;
+      const role = document.getElementById('f-role').value.trim();
+      if (!years || !role) { alert('Please fill in Years of Experience and Current Role.'); return; }
+    }
+    if (current === 3) {
+      if (!document.getElementById('f-achieve').value.trim()) { alert('Please list at least one achievement.'); return; }
+    }
+    showStep(current + 1);
+  }
+
+  function prevStep(current) { showStep(current - 1); }
+
+  function getChecked(selector) {
+    return [...document.querySelectorAll(selector + ':checked')].map(el => el.value).join(', ') || '—';
+  }
+
+  function submitForm() {
+    const get = id => document.getElementById(id)?.value?.trim() || '';
+    const name = get('f-name'), title = get('f-title'), email = get('f-email');
+    const phone = get('f-phone'), location = get('f-location');
+    const years = document.getElementById('f-years').value;
+    const role = get('f-role'), achieve = get('f-achieve');
+    const projects = get('f-projects'), deadline = get('f-deadline');
+    const domains = getChecked('.checkbox-grid input[type=checkbox]');
+    const lang = getChecked('input[name=lang]');
+    const color = getChecked('input[name=color]');
+
+    document.getElementById('success-summary').innerHTML = `
+      <strong>Name:</strong> ${name}<br>
+      <strong>Title:</strong> ${title}<br>
+      <strong>Email:</strong> ${email}<br>
+      ${phone ? `<strong>Phone:</strong> ${phone}<br>` : ''}
+      ${location ? `<strong>Location:</strong> ${location}<br>` : ''}
+      <strong>Experience:</strong> ${years}<br>
+      <strong>Current Role:</strong> ${role}<br>
+      <strong>Domains:</strong> ${domains}<br>
+      <strong>Language:</strong> ${lang}<br>
+      <strong>Color Preference:</strong> ${color}<br>
+      ${deadline ? `<strong>Deadline:</strong> ${deadline}<br>` : ''}
+    `;
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'block';
+    document.getElementById('intake').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function resetForm() {
+    document.getElementById('form-view').style.display = 'block';
+    document.getElementById('success-view').style.display = 'none';
+    document.querySelectorAll('input[type=text], input[type=email], textarea, select').forEach(el => el.value = '');
+    document.querySelectorAll('input[type=checkbox], input[type=radio]').forEach(el => el.checked = false);
+    showStep(1);
+  }
+</script>
+</body>
+</html>
